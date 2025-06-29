@@ -1,21 +1,17 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';  // ✅ ONLY this import
 
-class SignupScreen extends StatelessWidget {
-  const SignupScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);  // ✅ Class name must match
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Sign Up")),
+      appBar: AppBar(title: const Text("Login")),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Signup Page", style: TextStyle(fontSize: 30)),
-            const Padding(
-              padding: EdgeInsets.all(20),
-              child: TextField(decoration: InputDecoration(labelText: "Name")),
-            ),
+            const Text("Login Page", style: TextStyle(fontSize: 30)),
             const Padding(
               padding: EdgeInsets.all(20),
               child: TextField(decoration: InputDecoration(labelText: "Email")),
@@ -26,15 +22,15 @@ class SignupScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                print("Signup Pressed");
+                Navigator.pushReplacementNamed(context, '/dashboard');
               },
-              child: const Text("Sign Up"),
+              child: const Text("Login"),
             ),
             TextButton(
               onPressed: () {
-                Navigator.pop(context); // Go back to login or welcome
+                Navigator.pushNamed(context, '/signup');
               },
-              child: const Text("Already have an account? Login"),
+              child: const Text("Don't have an account? Sign up"),
             )
           ],
         ),
