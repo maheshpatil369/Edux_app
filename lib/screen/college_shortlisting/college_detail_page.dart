@@ -1,29 +1,42 @@
 import 'package:flutter/material.dart';
+import '../../widgets/base_scaffold.dart';
 
 class CollegeDetailPage extends StatelessWidget {
-  const CollegeDetailPage({Key? key}) : super(key: key);
+  const CollegeDetailPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("College Details")),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text("IIT Bombay", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            SizedBox(height: 10),
-            Text("Location: Mumbai"),
-            Text("Ranking: #3 in India"),
-            Text("Fees: ₹2.3L/year"),
-            SizedBox(height: 20),
-            Text("Available Programs:"),
-            Text("- B.Tech in CSE"),
-            Text("- M.Tech in AI"),
-          ],
-        ),
+    return BaseScaffold(
+      title: 'College Details',
+      currentIndex: 1,
+      onTabChange: (index) => _handleTabChange(context, index),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Text("College Name: Stanford University", style: TextStyle(fontSize: 18)),
+          SizedBox(height: 10),
+          Text("Rank: #2"),
+          Text("Fees: \$50,000/year"),
+          Text("Location: California"),
+        ],
       ),
     );
+  }
+
+  void _handleTabChange(BuildContext context, int index) {
+    switch (index) {
+      case 0:
+        Navigator.pushReplacementNamed(context, '/dashboard');
+        break;
+      case 1:
+        Navigator.pushReplacementNamed(context, '/college_list');
+        break;
+      case 2:
+        Navigator.pushReplacementNamed(context, '/resume_builder');
+        break;
+      case 3:
+        Navigator.pushReplacementNamed(context, '/user_profile');
+        break;
+    }
   }
 }

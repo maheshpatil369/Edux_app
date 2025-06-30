@@ -1,46 +1,42 @@
 import 'package:flutter/material.dart';
+import '../../widgets/base_scaffold.dart';
 
 class CollegeFilterPage extends StatelessWidget {
-  const CollegeFilterPage({Key? key}) : super(key: key);
+  const CollegeFilterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Filter Colleges")),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            const Text("Apply Filters", style: TextStyle(fontSize: 20)),
-            const SizedBox(height: 20),
-            DropdownButtonFormField<String>(
-              decoration: const InputDecoration(labelText: "Stream"),
-              items: const [
-                DropdownMenuItem(value: "Engineering", child: Text("Engineering")),
-                DropdownMenuItem(value: "Business", child: Text("Business")),
-              ],
-              onChanged: (_) {},
-            ),
-            const SizedBox(height: 10),
-            const TextField(
-              decoration: InputDecoration(labelText: "Max Tuition Fees"),
-              keyboardType: TextInputType.number,
-            ),
-            const SizedBox(height: 10),
-            const TextField(
-              decoration: InputDecoration(labelText: "Minimum Rank"),
-              keyboardType: TextInputType.number,
-            ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/college_list');
-              },
-              child: const Text("Apply & Show Colleges"),
-            ),
-          ],
-        ),
+    return BaseScaffold(
+      title: 'Filter Colleges',
+      currentIndex: 1,
+      onTabChange: (index) => _handleTabChange(context, index),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Text("Filter by:", style: TextStyle(fontSize: 20)),
+          SizedBox(height: 10),
+          TextField(decoration: InputDecoration(labelText: "Rank")),
+          TextField(decoration: InputDecoration(labelText: "Fees")),
+          TextField(decoration: InputDecoration(labelText: "Location")),
+        ],
       ),
     );
+  }
+
+  void _handleTabChange(BuildContext context, int index) {
+    switch (index) {
+      case 0:
+        Navigator.pushReplacementNamed(context, '/dashboard');
+        break;
+      case 1:
+        Navigator.pushReplacementNamed(context, '/college_list');
+        break;
+      case 2:
+        Navigator.pushReplacementNamed(context, '/resume_builder');
+        break;
+      case 3:
+        Navigator.pushReplacementNamed(context, '/user_profile');
+        break;
+    }
   }
 }
