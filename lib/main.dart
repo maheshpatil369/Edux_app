@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Import all screens
 import 'screen/core/splash_screen.dart';
 import 'screen/auth/welcome_screen.dart';
 import 'screen/auth/login_screen.dart';
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Edux App',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: '/dashboard', // You can switch to '/' for splash
       routes: {
         '/': (context) => const SplashScreen(),
         '/welcome': (context) => const WelcomeScreen(),
@@ -65,9 +66,9 @@ class MyApp extends StatelessWidget {
         '/dashboard': (context) => const MainDashboard(),
 
         // 🔹 AI & Course Recommendation
-        '/profile_form': (context) => const ProfileFormPage(),
-        '/course_suggestions': (context) => const CourseSuggestionsPage(),
-        '/skill_gap_analysis': (context) => const SkillGapAnalysisPage(),
+        '/profile_form': (context) => ProfileFormPage(), // ✅ removed const
+        '/course_suggestions': (context) => CourseSuggestionsPage(), // ✅ removed const
+        '/skill_gap_analysis': (context) => SkillGapAnalysisPage(), // ✅ removed const
 
         // 🔹 Career Simulation
         '/career_simulation': (context) => const CareerPathSimulationPage(),

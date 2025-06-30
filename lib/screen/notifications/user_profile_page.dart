@@ -5,10 +5,10 @@ class UserProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("User Profile")),
-      body: const Center(
-        child: Text("User Profile Page Coming Soon!"),
+    return const Center(
+      child: Text(
+        "User Profile Page Coming Soon!",
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
       ),
     );
   }

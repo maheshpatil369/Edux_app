@@ -6,15 +6,15 @@ class BaseScaffold extends StatelessWidget {
   final String title;
   final Widget child;
   final int currentIndex;
-  final Function(int) onTabChange;
+  final ValueChanged<int> onTabChange;
 
   const BaseScaffold({
-    super.key,
+    Key? key,
     required this.title,
     required this.child,
     required this.currentIndex,
     required this.onTabChange,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +24,11 @@ class BaseScaffold extends StatelessWidget {
         currentIndex: currentIndex,
         onTap: onTabChange,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: child,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: child,
+        ),
       ),
     );
   }
