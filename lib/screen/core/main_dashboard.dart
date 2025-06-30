@@ -23,23 +23,21 @@ class _MainDashboardState extends State<MainDashboard> {
     'User Profile',
   ];
 
-  final List<Widget> _pages = [];
+  late final List<Widget> _pages;
 
   @override
   void initState() {
     super.initState();
-    _pages.addAll([
+    _pages = [
       DashboardContent(onTabSwitch: _onTabSelected),
       const CollegeListViewPage(),
       const ResumeBuilderPage(),
       const UserProfilePage(),
-    ]);
+    ];
   }
 
   void _onTabSelected(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    setState(() => _selectedIndex = index);
   }
 
   @override
@@ -58,6 +56,7 @@ class _MainDashboardState extends State<MainDashboard> {
   }
 }
 
+// 🔽 Dashboard with buttons
 class DashboardContent extends StatelessWidget {
   final Function(int) onTabSwitch;
 
@@ -85,10 +84,10 @@ class DashboardContent extends StatelessWidget {
 
           sectionTitle("College Shortlisting"),
           dashboardButton(context, '/college_filter', "Filter Colleges", buttonStyle),
-          dashboardButton(context, '', "View College List", buttonStyle, tabIndex: 1),
+          dashboardButton(context, null, "View College List", buttonStyle, tabIndex: 1),
 
           sectionTitle("Resume & SOP Tools"),
-          dashboardButton(context, '', "Build Resume", buttonStyle, tabIndex: 2),
+          dashboardButton(context, null, "Build Resume", buttonStyle, tabIndex: 2),
           dashboardButton(context, '/ats_preview', "ATS Preview", buttonStyle),
           dashboardButton(context, '/template_selector', "Select Template", buttonStyle),
           dashboardButton(context, '/sop_editor', "Edit SOP", buttonStyle),
@@ -114,7 +113,7 @@ class DashboardContent extends StatelessWidget {
 
           sectionTitle("Notifications & Settings"),
           dashboardButton(context, '/notifications', "Notification Center", buttonStyle),
-          dashboardButton(context, '', "User Profile", buttonStyle, tabIndex: 3),
+          dashboardButton(context, null, "User Profile", buttonStyle, tabIndex: 3),
           dashboardButton(context, '/settings', "Settings", buttonStyle),
         ],
       ),
@@ -135,9 +134,9 @@ class DashboardContent extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           if (tabIndex != null) {
-            onTabSwitch(tabIndex);
-          } else {
-            Navigator.pushNamed(context, route!);
+            onTabSwitch(tabIndex); // 👈 Switch tab
+          } else if (route != null) {
+            Navigator.pushNamed(context, route); // 👈 Navigate to new route
           }
         },
         style: style,
