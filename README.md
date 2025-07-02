@@ -1,16 +1,97 @@
-# edux_app
+# 📘 EduX App - Smart EdTech Assistant
 
-A new Flutter project.
+EduX is a cross-platform mobile app built using **Flutter**, designed to assist students in their study abroad journey. It includes features like AI-based course recommendations, resume and SOP tools, college shortlisting, scholarship info, and a personal assistant chatbot.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 Features
 
-A few resources to get you started if this is your first Flutter project:
+- ✅ **Splash & Welcome Screen**
+- 🔐 Login / Signup system
+- 🧠 AI & Course Recommendation
+    - Profile Form
+    - Course Suggestions
+    - Skill Gap Analysis
+- 🎓 Career Simulation
+    - Career Path Planning
+    - Update Career Profile
+- 🏫 College Shortlisting
+    - Filter & View Colleges
+    - Admission Probability
+    - Application Deadlines
+- 📄 Resume & SOP Tools
+    - Resume Builder
+    - ATS Preview
+    - SOP Editor & Feedback
+- 📋 Application Tracker
+- 🎯 Test Prep (GRE, TOEFL)
+- 💸 Scholarship & Loan Estimators
+- 🔔 Notification Center
+- 🤖 Floating Chatbot Assistant (Emoji-based)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📁 Folder Structure
+
+```
+lib/
+├── screen/
+│   ├── auth/              # Login, Signup, Welcome
+│   ├── core/              # Splash, Dashboard
+│   ├── ai_course/         # AI & Course features
+│   ├── resume_sop/        # Resume & SOP tools
+│   ├── application_tracker/
+│   ├── college_shortlisting/
+│   ├── scholarship/
+│   ├── test_prep/
+│   ├── notifications/
+├── widgets/               # Reusable components (footer, header, assistant)
+```
+
+---
+
+## 🛠️ Getting Started
+
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/your-username/edux_app.git
+   cd edux_app
+   ```
+
+2. **Install dependencies**
+   ```bash
+   flutter pub get
+   ```
+
+3. **Run the app**
+   ```bash
+   flutter run
+   ```
+
+---
+
+## 📦 Dependencies
+
+- `flutter`
+- `cupertino_icons`
+- (Add more as you use packages like provider, http, etc.)
+
+---
+
+## ✨ Screenshots
+
+> Add screenshots or UI mockups here to show off your app visuals!
+
+---
+
+## 🧑‍💻 Author
+
+**Mahesh Patil**  
+💼 Flutter Developer | Full Stack Learner  
+📫 [mahesh@example.com](mailto:mahesh@example.com)
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
