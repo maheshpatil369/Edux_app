@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Edux App',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/dashboard', // Set initial screen
+      initialRoute: '/', // ✅ Start from splash screen
       onGenerateRoute: (settings) {
         // Custom handling of named routes with push
         WidgetBuilder builder;

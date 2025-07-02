@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 
 class AssistantFloatingButton extends StatefulWidget {
@@ -12,12 +10,6 @@ class AssistantFloatingButton extends StatefulWidget {
 class _AssistantFloatingButtonState extends State<AssistantFloatingButton> {
   bool showChatBox = false;
   final TextEditingController _controller = TextEditingController();
-
-  // Base64 encoded image of assistant icon
-  final String base64Robot =
-      'iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAYAAACMRWrdAAAACXBIWXMAAA7EAAAOxAGVKw4b...'; // Shortened for space
-
-  Uint8List get robotBytes => base64Decode(base64Robot);
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +35,20 @@ class _AssistantFloatingButtonState extends State<AssistantFloatingButton> {
                   Row(
                     children: [
                       CircleAvatar(
-                        backgroundImage: MemoryImage(robotBytes),
+                        radius: 24,
+                        backgroundColor: Colors.transparent,
+                        child: Text(
+                          '🤖',
+                          style: TextStyle(fontSize: 24),
+                        ),
                       ),
                       const SizedBox(width: 10),
-                      const Text("Hi! What can I help you with?"),
-                      const Spacer(),
+                      const Expanded(
+                        child: Text(
+                          "Hi! What can I help you with?",
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
                       IconButton(
                         icon: const Icon(Icons.close),
                         onPressed: () {
@@ -56,6 +57,7 @@ class _AssistantFloatingButtonState extends State<AssistantFloatingButton> {
                       ),
                     ],
                   ),
+
                   const Divider(),
                   Expanded(
                     child: ListView(
@@ -79,10 +81,19 @@ class _AssistantFloatingButtonState extends State<AssistantFloatingButton> {
         Positioned(
           bottom: 20,
           right: 20,
-          child: FloatingActionButton(
-            backgroundColor: Colors.indigo,
-            child: const Icon(Icons.smart_toy),
-            onPressed: () => setState(() => showChatBox = !showChatBox),
+          child: GestureDetector(
+            onTap: () => setState(() => showChatBox = !showChatBox),
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.transparent,
+              ),
+              child: const Text(
+                '🤖',
+                style: TextStyle(fontSize: 28),
+              ),
+            ),
           ),
         ),
       ],
