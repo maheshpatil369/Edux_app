@@ -40,11 +40,11 @@ lib/
 │   ├── core/              # Splash, Dashboard
 │   ├── ai_course/         # AI & Course features
 │   ├── resume_sop/        # Resume & SOP tools
-│   ├── application_tracker/
-│   ├── college_shortlisting/
-│   ├── scholarship/
-│   ├── test_prep/
-│   ├── notifications/
+│   ├── application_tracker/ # Status Tracker Page
+│   ├── college_shortlisting/ # Probabilit & Clg list View
+│   ├── scholarship/        # Finance & matching Details
+│   ├── test_prep/          # Mock test result
+│   ├── notifications/     # setting or notification 
 ├── widgets/               # Reusable components (footer, header, assistant)
 ```
 
