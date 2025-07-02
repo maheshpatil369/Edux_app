@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:edux_app/widgets/custom_header.dart';
 import 'package:edux_app/widgets/custom_footer.dart';
+import 'package:edux_app/widgets/assistant_floating_button.dart';
 
 import '../resume_sop/resume_builder_page.dart';
 import '../college_shortlisting/college_list_view_page.dart';
@@ -48,15 +49,19 @@ class _MainDashboardState extends State<MainDashboard> {
         currentIndex: _selectedIndex,
         onTap: _onTabSelected,
       ),
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _pages,
+      body: Stack(
+        children: [
+          IndexedStack(
+            index: _selectedIndex,
+            children: _pages,
+          ),
+          const AssistantFloatingButton(), // 🟣 Floating Chat Assistant
+        ],
       ),
     );
   }
 }
 
-// 🔽 Dashboard with buttons
 class DashboardContent extends StatelessWidget {
   final Function(int) onTabSwitch;
 
@@ -64,57 +69,99 @@ class DashboardContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final buttonStyle = ElevatedButton.styleFrom(
-      padding: const EdgeInsets.symmetric(vertical: 16),
-    );
-
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(16.0),
       child: ListView(
         children: [
-          const SizedBox(height: 10),
-          sectionTitle("AI & Course Recommendation"),
-          dashboardButton(context, '/profile_form', "Open Profile Form", buttonStyle),
-          dashboardButton(context, '/course_suggestions', "View Course Suggestions", buttonStyle),
-          dashboardButton(context, '/skill_gap_analysis', "Analyze Skill Gaps", buttonStyle),
+          _welcomeCard(),
+          const SizedBox(height: 16),
+          _progressCard(title: 'Resume', percent: 0.8),
+          const SizedBox(height: 12),
+          _progressCard(title: '3 colleges shortlisted', percent: 0.6),
+          const SizedBox(height: 12),
+          _tipCard(),
+          const SizedBox(height: 24),
 
-          sectionTitle("Career Simulation"),
-          dashboardButton(context, '/career_simulation', "Career Path Simulation", buttonStyle),
-          dashboardButton(context, '/update_profile', "Update Career Profile", buttonStyle),
+          sectionTitle("Quick Access"),
+          dashboardButton(context, '/profile_form', "Open Profile Form"),
+          dashboardButton(context, '/course_suggestions', "View Course Suggestions"),
+          dashboardButton(context, null, "Go to College List", tabIndex: 1),
+          dashboardButton(context, null, "Build Resume", tabIndex: 2),
+          dashboardButton(context, null, "User Profile", tabIndex: 3),
+        ],
+      ),
+    );
+  }
 
-          sectionTitle("College Shortlisting"),
-          dashboardButton(context, '/college_filter', "Filter Colleges", buttonStyle),
-          dashboardButton(context, null, "View College List", buttonStyle, tabIndex: 1),
+  Widget _welcomeCard() {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.indigo,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Row(
+        children: const [
+          Icon(Icons.school, color: Colors.white, size: 48),
+          SizedBox(width: 16),
+          Expanded(
+            child: Text(
+              'Welcome back!',
+              style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          )
+        ],
+      ),
+    );
+  }
 
-          sectionTitle("Resume & SOP Tools"),
-          dashboardButton(context, null, "Build Resume", buttonStyle, tabIndex: 2),
-          dashboardButton(context, '/ats_preview', "ATS Preview", buttonStyle),
-          dashboardButton(context, '/template_selector', "Select Template", buttonStyle),
-          dashboardButton(context, '/sop_editor', "Edit SOP", buttonStyle),
-          dashboardButton(context, '/sop_feedback', "SOP Feedback History", buttonStyle),
+  Widget _progressCard({required String title, required double percent}) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Color(0xFFE9EEFF),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title,
+              style: const TextStyle(
+                  color: Color(0xFF2D3A8C),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15)),
+          const SizedBox(height: 8),
+          LinearProgressIndicator(
+            value: percent,
+            backgroundColor: Colors.white,
+            color: Colors.orange,
+          ),
+        ],
+      ),
+    );
+  }
 
-          sectionTitle("Application Tracker"),
-          dashboardButton(context, '/document_checklist', "Document Checklist", buttonStyle),
-          dashboardButton(context, '/application_status', "Application Status Tracker", buttonStyle),
-          dashboardButton(context, '/interview_tips', "Interview Preparation Tips", buttonStyle),
-          dashboardButton(context, '/mentor_collaboration', "Mentor Collaboration", buttonStyle),
-
-          sectionTitle("Scholarship & Financial"),
-          dashboardButton(context, '/scholarship_match', "Scholarship Matches", buttonStyle),
-          dashboardButton(context, '/scholarship_detail', "Scholarship Details", buttonStyle),
-          dashboardButton(context, '/reminder_settings', "Reminder Settings", buttonStyle),
-          dashboardButton(context, '/financial_estimator', "Financial Estimator", buttonStyle),
-          dashboardButton(context, '/loan_calculator', "Loan Calculator", buttonStyle),
-
-          sectionTitle("Test Prep (GRE/TOEFL)"),
-          dashboardButton(context, '/study_planner', "Study Planner", buttonStyle),
-          dashboardButton(context, '/mock_test_results', "Mock Test Results", buttonStyle),
-          dashboardButton(context, '/peer_group_finder', "Find Peer Group", buttonStyle),
-
-          sectionTitle("Notifications & Settings"),
-          dashboardButton(context, '/notifications', "Notification Center", buttonStyle),
-          dashboardButton(context, null, "User Profile", buttonStyle, tabIndex: 3),
-          dashboardButton(context, '/settings', "Settings", buttonStyle),
+  Widget _tipCard() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Color(0xFFDDE6FF),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        children: const [
+          Icon(Icons.lightbulb_outline, color: Colors.deepPurple),
+          SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("AI Tip",
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Stay updated with new skills insights"),
+              ],
+            ),
+          )
         ],
       ),
     );
@@ -128,18 +175,25 @@ class DashboardContent extends StatelessWidget {
     ),
   );
 
-  Widget dashboardButton(BuildContext context, String? route, String label, ButtonStyle style, {int? tabIndex}) {
+  Widget dashboardButton(BuildContext context, String? route, String label, {int? tabIndex}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          backgroundColor: Colors.deepPurple.shade50,
+          foregroundColor: Colors.deepPurple,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
         onPressed: () {
           if (tabIndex != null) {
-            onTabSwitch(tabIndex); // 👈 Switch tab
+            onTabSwitch(tabIndex);
           } else if (route != null) {
-            Navigator.pushNamed(context, route); // 👈 Navigate to new route
+            Navigator.pushNamed(context, route);
           }
         },
-        style: style,
         child: Text(label),
       ),
     );

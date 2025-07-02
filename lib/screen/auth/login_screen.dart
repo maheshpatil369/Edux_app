@@ -22,7 +22,15 @@ class LoginScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, '/dashboard');
+                // ✅ Simulated validation logic
+                bool isValid = true;
+                if (isValid) {
+                  Navigator.pushReplacementNamed(context, '/dashboard');
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Invalid credentials')),
+                  );
+                }
               },
               child: const Text("Login"),
             ),

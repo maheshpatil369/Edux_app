@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 // Import all screens
 import 'screen/core/splash_screen.dart';
 import 'screen/auth/welcome_screen.dart';
@@ -57,59 +56,137 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Edux App',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/dashboard', // You can switch to '/' for splash
-      routes: {
-        '/': (context) => const SplashScreen(),
-        '/welcome': (context) => const WelcomeScreen(),
-        '/login': (context) => const LoginScreen(),
-        '/signup': (context) => const SignupScreen(),
-        '/dashboard': (context) => const MainDashboard(),
+      initialRoute: '/dashboard', // Set initial screen
+      onGenerateRoute: (settings) {
+        // Custom handling of named routes with push
+        WidgetBuilder builder;
+        switch (settings.name) {
+          case '/':
+            builder = (context) => const SplashScreen();
+            break;
+          case '/welcome':
+            builder = (context) => const WelcomeScreen();
+            break;
+          case '/login':
+            builder = (context) => const LoginScreen();
+            break;
+          case '/signup':
+            builder = (context) => const SignupScreen();
+            break;
+          case '/dashboard':
+            builder = (context) => const MainDashboard();
+            break;
 
-        // 🔹 AI & Course Recommendation
-        '/profile_form': (context) => ProfileFormPage(), // ✅ removed const
-        '/course_suggestions': (context) => CourseSuggestionsPage(), // ✅ removed const
-        '/skill_gap_analysis': (context) => SkillGapAnalysisPage(), // ✅ removed const
+        // AI & Course Recommendation
+          case '/profile_form':
+            builder = (context) => ProfileFormPage();
+            break;
+          case '/course_suggestions':
+            builder = (context) => CourseSuggestionsPage();
+            break;
+          case '/skill_gap_analysis':
+            builder = (context) => SkillGapAnalysisPage();
+            break;
 
-        // 🔹 Career Simulation
-        '/career_simulation': (context) => const CareerPathSimulationPage(),
-        '/update_profile': (context) => const UpdateProfilePage(),
+        // Career Simulation
+          case '/career_simulation':
+            builder = (context) => const CareerPathSimulationPage();
+            break;
+          case '/update_profile':
+            builder = (context) => const UpdateProfilePage();
+            break;
 
-        // 🔹 College Shortlisting
-        '/college_filter': (context) => const CollegeFilterPage(),
-        '/college_list': (context) => const CollegeListViewPage(),
-        '/college_detail': (context) => const CollegeDetailPage(),
-        '/admission_probability': (context) => const AdmissionProbabilityPage(),
-        '/application_deadlines': (context) => const ApplicationDeadlineCalendarPage(),
+        // College Shortlisting
+          case '/college_filter':
+            builder = (context) => const CollegeFilterPage();
+            break;
+          case '/college_list':
+            builder = (context) => const CollegeListViewPage();
+            break;
+          case '/college_detail':
+            builder = (context) => const CollegeDetailPage();
+            break;
+          case '/admission_probability':
+            builder = (context) => const AdmissionProbabilityPage();
+            break;
+          case '/application_deadlines':
+            builder = (context) => const ApplicationDeadlineCalendarPage();
+            break;
 
-        // 🔹 Resume & SOP Tools
-        '/resume_builder': (context) => const ResumeBuilderPage(),
-        '/ats_preview': (context) => const ATSPreviewPage(),
-        '/template_selector': (context) => const TemplateSelectorPage(),
-        '/sop_editor': (context) => const SOPEditorPage(),
-        '/sop_feedback': (context) => const SOPFeedbackHistoryPage(),
+        // Resume & SOP Tools
+          case '/resume_builder':
+            builder = (context) => const ResumeBuilderPage();
+            break;
+          case '/ats_preview':
+            builder = (context) => const ATSPreviewPage();
+            break;
+          case '/template_selector':
+            builder = (context) => const TemplateSelectorPage();
+            break;
+          case '/sop_editor':
+            builder = (context) => const SOPEditorPage();
+            break;
+          case '/sop_feedback':
+            builder = (context) => const SOPFeedbackHistoryPage();
+            break;
 
-        // 🔹 Application Tracker
-        '/document_checklist': (context) => const DocumentChecklistPage(),
-        '/application_status': (context) => const ApplicationStatusTrackerPage(),
-        '/interview_tips': (context) => const InterviewPreparationTipsPage(),
-        '/mentor_collaboration': (context) => const MentorCollaborationPage(),
+        // Application Tracker
+          case '/document_checklist':
+            builder = (context) => const DocumentChecklistPage();
+            break;
+          case '/application_status':
+            builder = (context) => const ApplicationStatusTrackerPage();
+            break;
+          case '/interview_tips':
+            builder = (context) => const InterviewPreparationTipsPage();
+            break;
+          case '/mentor_collaboration':
+            builder = (context) => const MentorCollaborationPage();
+            break;
 
-        // 🔹 Scholarship & Financial
-        '/scholarship_match': (context) => const ScholarshipMatchingPage(),
-        '/scholarship_detail': (context) => const ScholarshipDetailPage(),
-        '/reminder_settings': (context) => const ReminderSettingsPage(),
-        '/financial_estimator': (context) => const FinancialEstimatorPage(),
-        '/loan_calculator': (context) => const LoanCalculatorPage(),
+        // Scholarship & Financial
+          case '/scholarship_match':
+            builder = (context) => const ScholarshipMatchingPage();
+            break;
+          case '/scholarship_detail':
+            builder = (context) => const ScholarshipDetailPage();
+            break;
+          case '/reminder_settings':
+            builder = (context) => const ReminderSettingsPage();
+            break;
+          case '/financial_estimator':
+            builder = (context) => const FinancialEstimatorPage();
+            break;
+          case '/loan_calculator':
+            builder = (context) => const LoanCalculatorPage();
+            break;
 
-        // 🔹 Test Prep (GRE/TOEFL)
-        '/study_planner': (context) => const StudyPlannerPage(),
-        '/mock_test_results': (context) => const MockTestResultPage(),
-        '/peer_group_finder': (context) => const PeerGroupFinderPage(),
+        // Test Prep
+          case '/study_planner':
+            builder = (context) => const StudyPlannerPage();
+            break;
+          case '/mock_test_results':
+            builder = (context) => const MockTestResultPage();
+            break;
+          case '/peer_group_finder':
+            builder = (context) => const PeerGroupFinderPage();
+            break;
 
-        // 🔔 Notifications & Settings
-        '/notifications': (context) => const NotificationCenterPage(),
-        '/user_profile': (context) => const UserProfilePage(),
-        '/settings': (context) => const SettingsPage(),
+        // Notifications & Settings
+          case '/notifications':
+            builder = (context) => const NotificationCenterPage();
+            break;
+          case '/user_profile':
+            builder = (context) => const UserProfilePage();
+            break;
+          case '/settings':
+            builder = (context) => const SettingsPage();
+            break;
+
+          default:
+            throw Exception('Route not found: \${settings.name}');
+        }
+        return MaterialPageRoute(builder: builder, settings: settings);
       },
     );
   }

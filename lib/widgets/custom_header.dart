@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:edux_app/screen/notifications/notification_center_page.dart';
 
 class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -18,7 +19,10 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
         IconButton(
           icon: const Icon(Icons.notifications),
           onPressed: () {
-            Navigator.pushNamed(context, '/notifications');
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const NotificationCenterPage()),
+            );
           },
         ),
       ],
