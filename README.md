@@ -77,21 +77,6 @@ lib/
 - (Add more as you use packages like provider, http, etc.)
 
 ---
-
-## ✨ Screenshots
-
-> Add screenshots or UI mockups here to show off your app visuals!
-
----
-
-## 🧑‍💻 Author
-
-**Mahesh Patil**  
-💼 Flutter Developer | Full Stack Learner  
-📫 [mahesh@example.com](mailto:mahesh@example.com)
-
----
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
