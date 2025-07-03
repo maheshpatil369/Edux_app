@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       curve: Curves.easeOut,
     ));
 
-    _controller.forward(); // start animation
+    _controller.forward(); // Start animation
 
     Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacementNamed(context, '/welcome');
@@ -57,13 +57,23 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
           opacity: _fadeAnimation,
           child: SlideTransition(
             position: _slideAnimation,
-            child: const Text(
-              "EduX App",
-              style: TextStyle(
-                fontSize: 36,
-                fontWeight: FontWeight.bold,
-                color: Colors.indigo,
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(
+                  'assets/images/logo_bg_remove.png', // ✅ Your logo image
+                  height: 100,
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  "EduX App",
+                  style: TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.indigo,
+                  ),
+                ),
+              ],
             ),
           ),
         ),

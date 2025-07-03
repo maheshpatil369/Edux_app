@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Edux App',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/', // ✅ Start from splash screen
+      initialRoute: '/',
       onGenerateRoute: (settings) {
         // Custom handling of named routes with push
         WidgetBuilder builder;
@@ -129,7 +129,7 @@ class MyApp extends StatelessWidget {
           case '/sop_feedback':
             builder = (context) => const SOPFeedbackHistoryPage();
             break;
-
+  
         // Application Tracker
           case '/document_checklist':
             builder = (context) => const DocumentChecklistPage();

@@ -79,7 +79,7 @@ class DashboardContent extends StatelessWidget {
           const SizedBox(height: 12),
           _progressCard(title: '3 colleges shortlisted', percent: 0.6),
           const SizedBox(height: 12),
-          _tipCard(),
+           _tipCard(),
           const SizedBox(height: 24),
 
           sectionTitle("Quick Access"),
